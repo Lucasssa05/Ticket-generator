@@ -1,57 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerador de Ingressos</title>
+    <link rel="stylesheet" href="styles.css">
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Conference ticket generator</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
 </head>
 <body>
+    <div class="container">
+        <h1>Gerador de Ingressos</h1>
+        <form id="ticketForm">
+            <label>Nome do Evento</label>
+            <input type="text" id="eventName" placeholder="Conferência de Tecnologia" required />
 
-  <!-- Form starts -->
+            <label>Data e Hora</label>
+            <input type="datetime-local" id="eventDate" required />
 
-  Your Journey to Coding Conf 2025 Starts Here!
+            <label>Localização</label>
+            <input type="text" id="eventLocation" placeholder="Centro de Convenções de Salvador" required />
 
-  Secure your spot at next year's biggest coding conference.
+            <label>Nome do Participante</label>
+            <input type="text" id="attendeeName" placeholder="João Silva" required />
 
-  Upload Avatar
-  Drag and drop or click to upload
-  Upload your photo (JPG or PNG, max size: 500KB).
+            <label>Tipo de Ingresso</label>
+            <select id="ticketType">
+                <option>Entrada Geral</option>
+                <option>VIP</option>
+                <option>Estudante</option>
+            </select>
 
-  Full Name
+            <button type="button" onclick="generateTicket()">Gerar Ingresso</button>
+        </form>
 
-  Email Address
-  example@email.com
+        <div class="ticket-list" id="ticketList"></div>
+    </div>
 
-  GitHub Username
-  @yourusername
+    <script>
+        function generateTicket() {
+            // Captura os valores do formulário
+            let eventName = document.getElementById("eventName").value;
+            let eventDate = document.getElementById("eventDate").value;
+            let eventLocation = document.getElementById("eventLocation").value;
+            let attendeeName = document.getElementById("attendeeName").value;
+            let ticketType = document.getElementById("ticketType").value;
 
-  Generate My Ticket
+            // Verifica se todos os campos foram preenchidos
+            if (!eventName || !eventDate || !eventLocation || !attendeeName) {
+                alert("Por favor, preencha todos os campos.");
+                return;
+            }
 
-  <!-- Form ends -->
+            // Formata a data para um formato mais amigável
+            let formattedDate = new Date(eventDate).toLocaleString("pt-BR", {
+                day: "2-digit", month: "2-digit", year: "numeric",
+                hour: "2-digit", minute: "2-digit"
+            });
 
-  <!-- Generated tickets starts -->
+            // Cria o elemento do ingresso
+            let ticketDiv = document.createElement("div");
+            ticketDiv.classList.add("ticket");
+            ticketDiv.innerHTML = `
+                <h2>${eventName}</h2>
+                <p><strong>Participante:</strong> ${attendeeName}</p>
+                <p><strong>Data:</strong> ${formattedDate}</p>
+                <p><strong>Local:</strong> ${eventLocation}</p>
+                <p><strong>Tipo:</strong> ${ticketType}</p>
+            `;
 
-  Congrats, <!-- Full Name -->! Your ticket is ready.
+            // Adiciona o ingresso à lista
+            document.getElementById("ticketList").appendChild(ticketDiv);
 
-  We've emailed your ticket to <!-- Email Address --> and will send updates in the run up to the event.
-
-  Coding Conf
-  Jan 31, 2025 / Austin, TX
-
-  <!-- Generated tickets ends -->
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
+            // Limpa os campos do formulário
+            document.getElementById("ticketForm").reset();
+        }
+    </script>
 </body>
 </html>
