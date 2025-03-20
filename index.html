@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gerador de Ingressos</title>
     <link rel="stylesheet" href="styles.css">
-
 </head>
 <body>
     <div class="container">
@@ -17,8 +16,8 @@
             <label>Data e Hora</label>
             <input type="datetime-local" id="eventDate" required />
 
-            <label>Localização</label>
-            <input type="text" id="eventLocation" placeholder="Centro de Convenções de Salvador" required />
+            <label>Perfil do GitHub</label>
+            <input type="text" id="GitProfile" placeholder="Coloque seu GitHub aqui" required />
 
             <label>Nome do Participante</label>
             <input type="text" id="attendeeName" placeholder="João Silva" required />
@@ -30,50 +29,15 @@
                 <option>Estudante</option>
             </select>
 
+            <label>Foto do Participante</label>
+            <input type="file" id="attendeePhoto" accept="image/*">
+
             <button type="button" onclick="generateTicket()">Gerar Ingresso</button>
         </form>
 
         <div class="ticket-list" id="ticketList"></div>
     </div>
 
-    <script>
-        function generateTicket() {
-            // Captura os valores do formulário
-            let eventName = document.getElementById("eventName").value;
-            let eventDate = document.getElementById("eventDate").value;
-            let eventLocation = document.getElementById("eventLocation").value;
-            let attendeeName = document.getElementById("attendeeName").value;
-            let ticketType = document.getElementById("ticketType").value;
-
-            // Verifica se todos os campos foram preenchidos
-            if (!eventName || !eventDate || !eventLocation || !attendeeName) {
-                alert("Por favor, preencha todos os campos.");
-                return;
-            }
-
-            // Formata a data para um formato mais amigável
-            let formattedDate = new Date(eventDate).toLocaleString("pt-BR", {
-                day: "2-digit", month: "2-digit", year: "numeric",
-                hour: "2-digit", minute: "2-digit"
-            });
-
-            // Cria o elemento do ingresso
-            let ticketDiv = document.createElement("div");
-            ticketDiv.classList.add("ticket");
-            ticketDiv.innerHTML = `
-                <h2>${eventName}</h2>
-                <p><strong>Participante:</strong> ${attendeeName}</p>
-                <p><strong>Data:</strong> ${formattedDate}</p>
-                <p><strong>Local:</strong> ${eventLocation}</p>
-                <p><strong>Tipo:</strong> ${ticketType}</p>
-            `;
-
-            // Adiciona o ingresso à lista
-            document.getElementById("ticketList").appendChild(ticketDiv);
-
-            // Limpa os campos do formulário
-            document.getElementById("ticketForm").reset();
-        }
-    </script>
+    <script src="script.js" defer></script>
 </body>
 </html>
