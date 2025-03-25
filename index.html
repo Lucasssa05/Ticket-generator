@@ -1,43 +1,62 @@
 <!DOCTYPE html>
 <html lang="pt">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gerador de Ingressos</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <div class="container">
-        <h1>Gerador de Ingressos</h1>
-        <form id="ticketForm">
-            <label>Nome do Evento</label>
-            <input type="text" id="eventName" placeholder="Conferência de Tecnologia" required />
+      <h1>Gerador de Ingressos</h1>
+      <form id="ticketForm">
+        <label>Nome do Evento</label>
+        <input
+          type="text"
+          id="eventName"
+          placeholder="Conferência de Tecnologia"
+          required
+        />
 
-            <label>Data e Hora</label>
-            <input type="datetime-local" id="eventDate" required />
+        <label>Data e Hora</label>
+        <input type="datetime-local" id="eventDate" required />
 
-            <label>Perfil do GitHub</label>
-            <input type="text" id="GitProfile" placeholder="Coloque seu GitHub aqui" required />
+        <label>Perfil do GitHub</label>
+        <input
+          type="text"
+          id="GitProfile"
+          placeholder="Coloque seu GitHub aqui"
+          required
+        />
 
-            <label>Nome do Participante</label>
-            <input type="text" id="attendeeName" placeholder="João Silva" required />
+        <label>Nome do Participante</label>
+        <input
+          type="text"
+          id="attendeeName"
+          placeholder="João Silva"
+          required
+        />
 
-            <label>Tipo de Ingresso</label>
-            <select id="ticketType">
-                <option>Entrada Geral</option>
-                <option>VIP</option>
-                <option>Estudante</option>
-            </select>
+        <label>E-mail do Participante</label>
+        <input
+          type="email"
+          id="attendeeEmail"
+          placeholder="exemplo@email.com"
+          required
+        />
+        <div id="emailError" style="color: red; display: none">
+          Por favor, insira um e-mail válido.
+        </div>
 
-            <label>Foto do Participante</label>
-            <input type="file" id="attendeePhoto" accept="image/*">
+        <label>Foto do Participante</label>
+        <input type="file" id="attendeePhoto" accept="image/*" />
 
-            <button type="button" onclick="generateTicket()">Gerar Ingresso</button>
-        </form>
+        <button type="button" onclick="generateTicket()">Gerar Ingresso</button>
+      </form>
 
-        <div class="ticket-list" id="ticketList"></div>
+      <div class="ticket-list" id="ticketList"></div>
     </div>
 
     <script src="script.js" defer></script>
-</body>
+  </body>
 </html>

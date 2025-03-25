@@ -4,13 +4,22 @@ function generateTicket() {
     let eventDate = document.getElementById("eventDate").value;
     let GitProfile = document.getElementById("GitProfile").value;
     let attendeeName = document.getElementById("attendeeName").value;
-    let ticketType = document.getElementById("ticketType").value;
+    let attendeeEmail = document.getElementById("attendeeEmail").value;
     let attendeePhoto = document.getElementById("attendeePhoto").files[0]; // Captura o arquivo de imagem
 
     // Verifica se todos os campos foram preenchidos
-    if (!eventName || !eventDate || !GitProfile || !attendeeName) {
+    if (!eventName || !eventDate || !GitProfile || !attendeeName || !attendeeEmail) {
         alert("Por favor, preencha todos os campos.");
         return;
+    }
+
+    // Regex para validar o formato do email
+    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(attendeeEmail)) {
+        document.getElementById("emailError").style.display = "block";  // Exibe a mensagem de erro
+        return;
+    } else {
+        document.getElementById("emailError").style.display = "none";  // Esconde a mensagem de erro se o e-mail for válido
     }
 
     // Formata a data para um formato mais amigável
@@ -31,9 +40,9 @@ function generateTicket() {
                 <h2>${eventName}</h2>
                 <img src="${e.target.result}" alt="Foto do participante">
                 <p><strong>Participante:</strong> ${attendeeName}</p>
+                <p><strong>Email:</strong> ${attendeeEmail}</p>
                 <p><strong>Data:</strong> ${formattedDate}</p>
                 <p><strong>GitProfile:</strong> ${GitProfile}</p>
-                <p><strong>Tipo:</strong> ${ticketType}</p>
             `;
         };
         reader.readAsDataURL(attendeePhoto);
@@ -41,9 +50,9 @@ function generateTicket() {
         ticketDiv.innerHTML = `
             <h2>${eventName}</h2>
             <p><strong>Participante:</strong> ${attendeeName}</p>
+            <p><strong>Email:</strong> ${attendeeEmail}</p>
             <p><strong>Data:</strong> ${formattedDate}</p>
             <p><strong>GitProfile:</strong> ${GitProfile}</p>
-            <p><strong>Tipo:</strong> ${ticketType}</p>
         `;
     }
 
