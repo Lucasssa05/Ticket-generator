@@ -9,7 +9,10 @@
   <body>
     <div class="container">
       <h1>Gerador de Ingressos</h1>
+
+      <!-- Formulário para entrada de dados do ingresso -->
       <form id="ticketForm">
+        <!-- Campo para o nome do evento -->
         <label>Nome do Evento</label>
         <input
           type="text"
@@ -18,9 +21,11 @@
           required
         />
 
+        <!-- Campo para data e hora do evento -->
         <label>Data e Hora</label>
         <input type="datetime-local" id="eventDate" required />
 
+        <!-- Campo para o perfil do GitHub do participante -->
         <label>Perfil do GitHub</label>
         <input
           type="text"
@@ -29,6 +34,7 @@
           required
         />
 
+        <!-- Campo para o nome do participante -->
         <label>Nome do Participante</label>
         <input
           type="text"
@@ -37,6 +43,7 @@
           required
         />
 
+        <!-- Campo para o e-mail do participante -->
         <label>E-mail do Participante</label>
         <input
           type="email"
@@ -44,19 +51,24 @@
           placeholder="exemplo@email.com"
           required
         />
+        <!-- Mensagem de erro para e-mail inválido -->
         <div id="emailError" style="color: red; display: none">
           Por favor, insira um e-mail válido.
         </div>
 
+        <!-- Campo para upload de foto do participante -->
         <label>Foto do Participante</label>
         <input type="file" id="attendeePhoto" accept="image/*" />
 
+        <!-- Botão para gerar o ingresso -->
         <button type="button" onclick="generateTicket()">Gerar Ingresso</button>
       </form>
 
+      <!-- Área onde os ingressos gerados serão exibidos -->
       <div class="ticket-list" id="ticketList"></div>
     </div>
 
+    <!-- Importação do script JavaScript -->
     <script src="Script.js" defer></script>
   </body>
 </html>
